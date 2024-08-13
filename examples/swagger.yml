@@ -1,0 +1,285 @@
+openapi: 3.0.3
+info:
+  title: Vulnerable Flask Application
+  description: An API with vulnerable path for different vulnerabilities
+  version: 1.0.0
+  contact: {}
+servers:
+  - url: http://localhost:8000/api
+  - url: http://localhost:8001/api
+paths:
+  /xssnovuln:
+    get:
+      tags:
+        - xssnovuln
+      summary: Reflected XSS using GET method
+      description: Reflected XSS using GET method
+      operationId: reflectedXssUsingGetMethod
+      responses:
+        '200':
+          description: reflect the username from username paramter
+          content:
+            text/plain:
+              examples:
+                reflect the username from username paramter:
+                  value: ''
+  /xssreflected:
+    post:
+      tags:
+        - xssreflected
+      summary: XSS using POST method
+      description: XSS using POST method
+      operationId: xssUsingPostMethod
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: <string>
+            examples:
+              XSS using POST method:
+                value:
+                  username: <string>
+      responses:
+        '200':
+          description: this is the username
+          content:
+            text/plain:
+              examples:
+                this is the username:
+                  value: ''
+  /lfinovuln:
+    get:
+      tags:
+        - lfinovuln
+      summary: LFI using GET method
+      description: LFI using GET method
+      operationId: lfiUsingGetMethod
+      responses:
+        '200':
+          description: return a file from the dir
+          content:
+            text/plain:
+              examples:
+                return a file from the dir:
+                  value: ''
+  /lfivuln:
+    post:
+      tags:
+        - lfivuln
+      summary: LFI using POST method
+      description: LFI using POST method
+      operationId: lfiUsingPostMethod
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filename:
+                  type: string
+                  example: <string>
+            examples:
+              LFI using POST method:
+                value:
+                  filename: <string>
+      responses:
+        '200':
+          description: this is the file output
+          content:
+            text/plain:
+              examples:
+                this is the file output:
+                  value: ''
+  /rfinovuln:
+    get:
+      tags:
+        - rfinovuln
+      summary: RFI using GET method
+      description: RFI using GET method
+      operationId: rfiUsingGetMethod
+      responses:
+        '200':
+          description: return a file from the dir
+          content:
+            text/plain:
+              examples:
+                return a file from the dir:
+                  value: ''
+  /rfivuln:
+    post:
+      tags:
+        - rfivuln
+      summary: RFI using POST method
+      description: RFI using POST method
+      operationId: rfiUsingPostMethod
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                imagelink:
+                  type: string
+                  example: <string>
+            examples:
+              RFI using POST method:
+                value:
+                  imagelink: <string>
+      responses:
+        '200':
+          description: this is the image output
+          content:
+            text/plain:
+              examples:
+                this is the image output:
+                  value: ''
+  /hhinovuln:
+    get:
+      tags:
+        - hhinovuln
+      summary: HHI using GET method
+      description: HHI using GET method
+      operationId: hhiUsingGetMethod
+      responses:
+        '200':
+          description: return a email for reseting
+          content:
+            text/plain:
+              examples:
+                return a email for reseting:
+                  value: ''
+  /hhivuln:
+    post:
+      tags:
+        - hhivuln
+      summary: HHI using POST method
+      description: HHI using POST method
+      operationId: hhiUsingPostMethod
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: <string>
+            examples:
+              HHI using POST method:
+                value:
+                  email: <string>
+      responses:
+        '200':
+          description: this is the reset link
+          content:
+            text/plain:
+              examples:
+                this is the reset link:
+                  value: ''
+  /sstinovuln:
+    get:
+      tags:
+        - sstinovuln
+      summary: SSTI using GET method
+      description: SSTI using GET method
+      operationId: sstiUsingGetMethod
+      responses:
+        '200':
+          description: return a math eval
+          content:
+            text/plain:
+              examples:
+                return a math eval:
+                  value: ''
+  /sstivuln:
+    post:
+      tags:
+        - sstivuln
+      summary: SSTI using POST method
+      description: SSTI using POST method
+      operationId: sstiUsingPostMethod
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mathexp:
+                  type: string
+                  example: <string>
+            examples:
+              SSTI using POST method:
+                value:
+                  mathexp: <string>
+      responses:
+        '200':
+          description: this is used to evaluting math expressions
+          content:
+            text/plain:
+              examples:
+                this is used to evaluting math expressions:
+                  value: ''
+  /sqlinovuln:
+    get:
+      tags:
+        - sqlinovuln
+      summary: SQLI using GET method
+      description: SQLI using GET method
+      operationId: sqliUsingGetMethod
+      responses:
+        '200':
+          description: login using creds
+          content:
+            text/plain:
+              examples:
+                login using creds:
+                  value: ''
+  /sqlivuln:
+    post:
+      tags:
+        - sqlivuln
+      summary: SQLI using POST method
+      description: SQLI using POST method
+      operationId: sqliUsingPostMethod
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                  example: <string>
+                username:
+                  type: string
+                  example: <string>
+            examples:
+              SQLI using POST method:
+                value:
+                  password: testing
+                  username: testing
+      responses:
+        '200':
+          description: login using creds
+          content:
+            text/plain:
+              examples:
+                login using creds:
+                  value: ''
+tags:
+  - name: xssnovuln
+  - name: xssreflected
+  - name: lfinovuln
+  - name: lfivuln
+  - name: rfinovuln
+  - name: rfivuln
+  - name: hhinovuln
+  - name: hhivuln
+  - name: sstinovuln
+  - name: sstivuln
+  - name: sqlinovuln
+  - name: sqlivuln

@@ -1,2 +1,5 @@
-# opivm
-One Punch Intel and Vulnerability Monitoring
+# OPIVM
+OpenAPI Vulnerability Mitigation
+
+# Usage
+```$ python3 opivm.py <swagger_file>```
